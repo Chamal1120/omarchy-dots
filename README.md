@@ -11,10 +11,12 @@ cd ~/Projects/omarchy-dots
 make rice
 ```
 
-`make rice` installs stow, moves any file it would replace into
-`~/.local/state/omarchy-dots/backup-<timestamp>/`, links the configs, and reloads
-Hyprland and tmux. It is safe to run again. It may ask for your sudo password to
-install stow.
+`make rice` installs stow, permanently deletes any file, folder, or symlink in the way
+of a link, links the configs, reloads Hyprland and tmux, and installs and applies the
+[Vague theme](https://github.com/chrisviegas/omarchy-vague-theme). It keeps no backup. It
+is safe to run again once everything is linked, but each run deletes and reclones the
+theme, so it needs network access and loses local edits to the theme. It may ask for your
+sudo password to install stow.
 
 Open a new terminal afterwards: foot and Bash read these files at startup.
 
@@ -25,9 +27,14 @@ The configs are symlinks, so edits in `~/.config` change this repo. Commit them 
 | Package | File | Changes |
 |---|---|---|
 | `hypr` | `~/.config/hypr/bindings.lua` | Vim window focus and swap, moved defaults, web app launchers removed |
+| `hypr` | `~/.config/hypr/looknfeel.lua` | Drag window borders with the mouse to resize |
 | `tmux` | `~/.config/tmux/tmux.conf` | `Ctrl+S` leader, vim pane focus, copy mode binds |
 | `foot` | `~/.config/foot/foot.ini` | Sends `Ctrl+Shift+Space` and `Ctrl+Shift+I` to tmux |
 | `readline` | `~/.inputrc` | Vi mode at the Bash prompt with a mode indicator |
+| `bash` | `~/.bashrc` | `vim` alias for `nvim`, `Ctrl+F` opens tsesh |
+| `nvim` | `~/.config/nvim/` | Full Neovim config: `Ctrl+F` opens tsesh, Telescope and Oil keys, no indent guides, bottom-line command mode, word highlights, side tree or top file bar, manual completion |
+| `local-scripts` | `~/.local/scripts/tsesh` | Fuzzy-pick a project and open it in a tmux session |
+| `claude` | `~/.claude/skills/omarchy-dots/SKILL.md`, `~/.claude/CLAUDE.md` | Teaches Claude Code to keep new configs in this repo, plus hard rules for every session |
 
 ## Keys
 
@@ -45,6 +52,12 @@ The configs are symlinks, so edits in `~/.config` change this repo. Commit them 
 | `Leader a` | Last tmux window |
 | `Ctrl+Shift+Space` | Enter tmux copy mode |
 | `Ctrl+Shift+I` | Exit tmux copy mode |
+| `Ctrl+F` | Open tsesh, in Bash and Neovim normal mode |
+| `Ctrl+P` | Neovim: find files by name |
+| `Ctrl+Space` | Neovim: search file contents |
+| `_` | Neovim: open Oil |
+| `Alt+I` | Neovim: toggle the completion menu |
+| `Ctrl+N` / `Ctrl+P` | Neovim: next or previous completion item |
 
 ## Notes
 

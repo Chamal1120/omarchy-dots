@@ -3,7 +3,10 @@
 # its first update, so fetch them first or pacman can't find the package.
 set -euo pipefail
 
-command -v stow &>/dev/null && exit 0
+if command -v stow &>/dev/null; then
+  echo "stow is already installed"
+  exit 0
+fi
 
 if [[ ! -f /var/lib/pacman/sync/extra.db ]]; then
   sudo pacman -Sy

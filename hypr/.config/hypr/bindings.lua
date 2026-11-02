@@ -44,6 +44,10 @@ hl.unbind("SUPER + SHIFT + S") -- Google Maps
 hl.unbind("SUPER + SHIFT + X") -- X
 hl.unbind("SUPER + SHIFT + ALT + X") -- X Post
 
+-- Open Chrome directly.
+hl.unbind("SUPER + SHIFT + RETURN") -- was: Browser
+o.bind("SUPER + SHIFT + RETURN", "Chrome", { launch = "google-chrome-stable" })
+
 -- Vim-style window navigation.
 -- Free up the defaults that sat on J, K and L (SUPER + H was unbound).
 hl.unbind("SUPER + J") -- was: Toggle window split
