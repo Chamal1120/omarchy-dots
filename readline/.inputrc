@@ -1,0 +1,30 @@
+# A personal ~/.inputrc replaces /etc/inputrc, so pull the system defaults in.
+$include /etc/inputrc
+
+# Vim keys at the prompt. Set here rather than with `set -o vi` in ~/.bashrc so
+# Omarchy's inputrc and fzf bind their keys in vi mode, not just emacs mode.
+set editing-mode vi
+
+# Leave insert mode immediately on Esc (the default wait is 500ms).
+set keyseq-timeout 50
+
+# Show the vi mode at the start of the prompt. Starship's own vim indicator
+# doesn't support Bash, so readline draws it. \1 and \2 wrap the invisible
+# colour codes so line wrapping stays correct.
+set show-mode-in-prompt on
+set vi-ins-mode-string "\1\e[36m\2[I]\1\e[0m\2 "
+set vi-cmd-mode-string "\1\e[1;33m\2[N]\1\e[0m\2 "
+
+# Keep Ctrl+L clearing the screen while in insert mode.
+"\C-l": clear-screen
+
+# Ignore Ctrl+Shift+Space and Ctrl+Shift+I outside tmux. Foot sends them as
+# escape sequences for tmux's copy mode binds, which would otherwise be read as
+# Esc plus keystrokes. Keep vi-insert last: bindings loaded after this file land
+# in the current keymap.
+set keymap vi-command
+"\e[32;6u": redraw-current-line
+"\e[105;6u": redraw-current-line
+set keymap vi-insert
+"\e[32;6u": redraw-current-line
+"\e[105;6u": redraw-current-line
