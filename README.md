@@ -58,6 +58,9 @@ The configs are symlinks, so edits in `~/.config` change this repo. Commit them 
 | `_` | Neovim: open Oil |
 | `Alt+I` | Neovim: toggle the completion menu |
 | `Ctrl+N` / `Ctrl+P` | Neovim: next or previous completion item |
+| `Space g d` | Neovim: go to definition |
+| `Space g r` | Neovim: go to references |
+| `Space g v` | Neovim: Git diff hunks (moved from `Space g d`) |
 
 ## Notes
 

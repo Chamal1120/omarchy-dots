@@ -13,3 +13,15 @@ vim.keymap.set("n", "<C-f>", function()
     vim.cmd.startinsert()
   end
 end, { desc = "Switch project (tsesh)" })
+
+-- LSP navigation on the leader. <leader>gd replaces LazyVim's Git Diff (hunks),
+-- which moves to <leader>gv.
+vim.keymap.set("n", "<leader>gd", function()
+  Snacks.picker.lsp_definitions()
+end, { desc = "Goto Definition" })
+vim.keymap.set("n", "<leader>gr", function()
+  Snacks.picker.lsp_references()
+end, { desc = "Goto References" })
+vim.keymap.set("n", "<leader>gv", function()
+  Snacks.picker.git_diff()
+end, { desc = "Git Diff (hunks)" })
