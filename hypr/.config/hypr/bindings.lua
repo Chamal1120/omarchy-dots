@@ -70,3 +70,9 @@ o.bind("SUPER + SHIFT + H", "Swap window to the left", hl.dsp.window.swap({ dire
 o.bind("SUPER + SHIFT + J", "Swap window down", hl.dsp.window.swap({ direction = "d" }))
 o.bind("SUPER + SHIFT + K", "Swap window up", hl.dsp.window.swap({ direction = "u" }))
 o.bind("SUPER + SHIFT + L", "Swap window to the right", hl.dsp.window.swap({ direction = "r" }))
+
+-- Resize windows. Hold to keep resizing.
+o.bind("ALT + SHIFT + H", "Shrink window width", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
+o.bind("ALT + SHIFT + J", "Grow window height", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
+o.bind("ALT + SHIFT + K", "Shrink window height", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
+o.bind("ALT + SHIFT + L", "Grow window width", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })

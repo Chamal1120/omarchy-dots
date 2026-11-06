@@ -42,6 +42,8 @@ The configs are symlinks, so edits in `~/.config` change this repo. Commit them 
 |---|---|
 | `Super + H/J/K/L` | Focus window |
 | `Super + Shift + H/J/K/L` | Swap window |
+| `Alt + Shift + H/L` | Shrink / grow window width |
+| `Alt + Shift + K/J` | Shrink / grow window height |
 | `Super + B` | Keybindings menu |
 | `Super + E` | Toggle window split |
 | `Super + M` | Toggle workspace layout |
