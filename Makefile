@@ -1,4 +1,4 @@
-PACKAGES := hypr tmux foot readline bash nvim local-scripts claude
+PACKAGES := hypr tmux foot readline bash nvim local-scripts claude systemd
 TARGET ?= $(HOME)
 
 .PHONY: rice

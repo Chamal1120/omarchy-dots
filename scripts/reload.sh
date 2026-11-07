@@ -9,3 +9,8 @@ fi
 if tmux list-sessions &>/dev/null; then
   tmux source-file "$HOME/.config/tmux/tmux.conf"
 fi
+
+if systemctl --user is-active --quiet graphical-session.target; then
+  systemctl --user daemon-reload
+  systemctl --user enable --now nightlight-sun.service nightlight-sun.timer
+fi

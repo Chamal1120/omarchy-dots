@@ -40,7 +40,8 @@ a package, files sit at their path relative to `$HOME`.
 | `readline` | `~/.inputrc` |
 | `bash` | `~/.bashrc` |
 | `nvim` | Every file in `~/.config/nvim/` except `lua/plugins/theme.lua` and `.gitignore` |
-| `local-scripts` | `~/.local/scripts/tsesh` |
+| `local-scripts` | `~/.local/scripts/tsesh`, `~/.local/scripts/nightlight-sun` |
+| `systemd` | `~/.config/systemd/user/nightlight-sun.service`, `~/.config/systemd/user/nightlight-sun.timer` |
 | `claude` | `~/.claude/skills/omarchy-dots/SKILL.md`, `~/.claude/CLAUDE.md` |
 
 Two files in `~/.config/nvim/` must stay out of the repo. `lua/plugins/theme.lua` is
@@ -111,6 +112,10 @@ An unlinked file can hold changes a migration made, so check before replacing it
 | `tmux` | Load it on a throwaway server first: `tmux -L check -f <file> new-session -d`, then `tmux -L check kill-server`. Then `tmux source-file ~/.config/tmux/tmux.conf`. |
 | `foot` | `foot --check-config`. Applies to new windows only. |
 | `readline` | Applies to new shells only. |
+| `systemd` | `systemctl --user daemon-reload`, then `systemctl --user status <unit>` |
+
+`~/.config/hypr/hyprsunset.conf` is generated daily by `nightlight-sun`. Don't track or
+edit it; change the script instead.
 
 Sourcing a tmux config does not remove binds deleted from it. Run `tmux unbind` for
 those in the running server.

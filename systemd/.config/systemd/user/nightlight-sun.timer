@@ -1,0 +1,10 @@
+[Unit]
+Description=Recompute night light times each day
+PartOf=graphical-session.target
+
+[Timer]
+OnCalendar=*-*-* 00:05
+Persistent=true
+
+[Install]
+WantedBy=graphical-session.target

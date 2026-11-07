@@ -34,6 +34,8 @@ The configs are symlinks, so edits in `~/.config` change this repo. Commit them 
 | `bash` | `~/.bashrc` | `vim` alias for `nvim`, `Ctrl+F` opens tsesh |
 | `nvim` | `~/.config/nvim/` | Full Neovim config: `Ctrl+F` opens tsesh, Telescope and Oil keys, no indent guides, bottom-line command mode, word highlights, side tree or top file bar, no which-key popups, manual completion, no inline diagnostic text |
 | `local-scripts` | `~/.local/scripts/tsesh` | Fuzzy-pick a project and open it in a tmux session |
+| `local-scripts` | `~/.local/scripts/nightlight-sun` | Writes `~/.config/hypr/hyprsunset.conf` so night light turns on at sunset and off at sunrise |
+| `systemd` | `~/.config/systemd/user/nightlight-sun.{service,timer}` | Runs `nightlight-sun` at login and daily at 00:05 |
 | `claude` | `~/.claude/skills/omarchy-dots/SKILL.md`, `~/.claude/CLAUDE.md` | Teaches Claude Code to keep new configs in this repo, plus hard rules for every session |
 
 ## Keys
@@ -65,6 +67,11 @@ The configs are symlinks, so edits in `~/.config` change this repo. Commit them 
 | `Space g v` | Neovim: Git diff hunks (moved from `Space g d`) |
 
 ## Notes
+
+Night light follows the sun at the system timezone's city. To use a precise location or a
+different warmth, set `NIGHTLIGHT_LAT`, `NIGHTLIGHT_LON`, or `NIGHTLIGHT_TEMP` (default
+4000 K) in the service with `systemctl --user edit nightlight-sun.service`. `Super+Ctrl+N`
+still toggles it by hand until the next sunrise or sunset.
 
 The copy mode keys need the `foot` package, so they only work in foot.
 

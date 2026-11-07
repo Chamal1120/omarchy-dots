@@ -1,0 +1,11 @@
+[Unit]
+Description=Schedule night light from today's sunrise and sunset
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/scripts/nightlight-sun
+
+[Install]
+WantedBy=graphical-session.target
