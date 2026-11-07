@@ -76,3 +76,39 @@ o.bind("ALT + SHIFT + H", "Shrink window width", hl.dsp.window.resize({ x = -50,
 o.bind("ALT + SHIFT + J", "Grow window height", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
 o.bind("ALT + SHIFT + K", "Shrink window height", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
 o.bind("ALT + SHIFT + L", "Grow window width", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
+
+-- Toggle floating, and give a newly floated window a sane default size
+-- (instead of keeping its tiled size), centered on its monitor.
+-- Change these to taste; the size is capped to a share of the monitor.
+local FLOAT_WIDTH, FLOAT_HEIGHT = 1100, 760
+
+local function toggle_float()
+  local window = hl.get_active_window()
+  if not window then
+    return
+  end
+
+  local was_floating = window.floating
+  hl.dispatch(hl.dsp.window.float({ action = "toggle", window = window }))
+  if was_floating then
+    return
+  end
+
+  local width, height = FLOAT_WIDTH, FLOAT_HEIGHT
+  local monitor = window.monitor
+  if monitor and monitor.width then
+    local mw = math.floor(monitor.width / monitor.scale)
+    local mh = math.floor(monitor.height / monitor.scale)
+    if (monitor.transform or 0) % 2 == 1 then
+      mw, mh = mh, mw
+    end
+    width = math.min(width, math.floor(mw * 0.8))
+    height = math.min(height, math.floor(mh * 0.8))
+  end
+
+  hl.dispatch(hl.dsp.window.resize({ x = width, y = height, relative = false, window = window }))
+  hl.dispatch(hl.dsp.window.center({ window = window }))
+end
+
+o.bind_expressions[toggle_float] = 'hl.dsp.window.float({ action = "toggle" })'
+o.rebind("SUPER + T", "Toggle window floating/tiling", toggle_float)
