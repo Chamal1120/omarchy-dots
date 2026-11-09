@@ -43,6 +43,12 @@ a package, files sit at their path relative to `$HOME`.
 | `local-scripts` | `~/.local/scripts/tsesh`, `~/.local/scripts/nightlight-sun` |
 | `systemd` | `~/.config/systemd/user/nightlight-sun.service`, `~/.config/systemd/user/nightlight-sun.timer` |
 | `claude` | `~/.claude/skills/omarchy-dots/SKILL.md`, `~/.claude/CLAUDE.md` |
+| `omarchy` | `~/.config/omarchy/hooks/theme-set.d/20-tmux-see-through` |
+
+`themes/vague/shell.toml` is not a stow package. Installing the Vague theme deletes and
+reclones `~/.config/omarchy/themes/vague`, so a link there would be lost. `make rice` copies
+the file in after the install and runs `omarchy theme set vague`. Edit the repo copy, not
+the one in the theme folder.
 
 Two files in `~/.config/nvim/` must stay out of the repo. `lua/plugins/theme.lua` is
 Omarchy's relative symlink to the active theme, which would break if moved. Stow ignores

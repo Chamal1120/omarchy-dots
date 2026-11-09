@@ -1,4 +1,4 @@
-PACKAGES := hypr tmux foot readline bash nvim local-scripts claude systemd
+PACKAGES := hypr tmux foot readline bash nvim local-scripts claude systemd omarchy
 TARGET ?= $(HOME)
 
 .PHONY: rice
@@ -8,3 +8,5 @@ rice:
 	stow --restow --no-folding --target="$(TARGET)" $(PACKAGES)
 	./scripts/reload.sh
 	omarchy-theme-install https://github.com/chrisviegas/omarchy-vague-theme
+	cp themes/vague/shell.toml "$(HOME)/.config/omarchy/themes/vague/shell.toml"
+	omarchy theme set vague

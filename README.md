@@ -37,6 +37,8 @@ The configs are symlinks, so edits in `~/.config` change this repo. Commit them 
 | `local-scripts` | `~/.local/scripts/nightlight-sun` | Writes `~/.config/hypr/hyprsunset.conf` so night light turns on at sunset and off at sunrise |
 | `systemd` | `~/.config/systemd/user/nightlight-sun.{service,timer}` | Runs `nightlight-sun` at login and daily at 00:05 |
 | `claude` | `~/.claude/skills/omarchy-dots/SKILL.md`, `~/.claude/CLAUDE.md` | Teaches Claude Code to keep new configs in this repo, plus hard rules for every session |
+| `omarchy` | `~/.config/omarchy/hooks/theme-set.d/20-tmux-see-through` | After each theme switch, clears the solid background Omarchy gives tmux windows and panes so foot's see-through background shows |
+| `themes` (copied, not stowed) | `~/.config/omarchy/themes/vague/shell.toml` | See-through popups, menus, and notifications (`background-alpha = 0.6`) so Glassy mode blurs behind them |
 
 ## Keys
 
@@ -74,6 +76,12 @@ different warmth, set `NIGHTLIGHT_LAT`, `NIGHTLIGHT_LON`, or `NIGHTLIGHT_TEMP` (
 still toggles it by hand until the next sunrise or sunset.
 
 The copy mode keys need the `foot` package, so they only work in foot.
+
+`themes/vague/shell.toml` is copied, not stowed, because installing the Vague theme deletes and
+reclones its folder. `make rice` copies it in after the install and reapplies the theme. To change
+it, edit the repo copy and run `make rice`, or copy it over by hand and run `omarchy theme set vague`.
+It is a full copy of Omarchy's generated `shell.toml`, so it won't pick up later changes to that
+template.
 
 To add a config, put it under a new package folder at its path relative to `~`,
 then add the folder to `PACKAGES` in the `Makefile`.

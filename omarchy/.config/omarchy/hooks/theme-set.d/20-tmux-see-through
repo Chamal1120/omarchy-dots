@@ -1,0 +1,24 @@
+#!/bin/bash
+# On each theme switch, Omarchy (omarchy-theme-set-tmux) paints tmux with the
+# theme's background twice: through window-style, and by sending every pane an
+# OSC 11 background colour. Both hide foot's see-through background. Keep the
+# theme's text colour and let the terminal's own background, and so Glassy
+# blur, show through.
+
+tmux list-sessions >/dev/null 2>&1 || exit 0
+
+fg=$(tmux show-options -gv window-style 2>/dev/null | sed -n 's/.*fg=\([^,]*\).*/\1/p')
+style="bg=default${fg:+,fg=$fg}"
+
+tmux set-option -g window-style "$style" \; set-option -g window-active-style "$style"
+
+# OSC 111 resets a pane's background to the terminal default.
+while IFS= read -r pane_tty; do
+  [[ $pane_tty == /dev/pts/* ]] || continue
+  printf '\033]111\007' >"$pane_tty" 2>/dev/null || true
+done < <(tmux list-panes -a -F "#{pane_tty}" 2>/dev/null | sort -u)
+
+while IFS= read -r client; do
+  [[ -n $client ]] && tmux refresh-client -t "$client" 2>/dev/null
+done < <(tmux list-clients -F "#{client_name}" 2>/dev/null)
+exit 0
