@@ -38,6 +38,7 @@ The configs are symlinks, so edits in `~/.config` change this repo. Commit them 
 | `systemd` | `~/.config/systemd/user/nightlight-sun.{service,timer}` | Runs `nightlight-sun` at login and daily at 00:05 |
 | `claude` | `~/.claude/skills/omarchy-dots/SKILL.md`, `~/.claude/CLAUDE.md` | Teaches Claude Code to keep new configs in this repo, plus hard rules for every session |
 | `omarchy` | `~/.config/omarchy/hooks/theme-set.d/20-tmux-see-through` | After each theme switch, clears the solid background Omarchy gives tmux windows and panes so foot's see-through background shows |
+| `cliamp` | `~/.config/cliamp/config.toml` | Starts the cliamp music player in the free Radio provider |
 | `themes` (copied, not stowed) | `~/.config/omarchy/themes/vague/shell.toml` | See-through popups, menus, and notifications (`background-alpha = 0.6`) so Glassy mode blurs behind them |
 
 ## Keys

@@ -44,6 +44,7 @@ a package, files sit at their path relative to `$HOME`.
 | `systemd` | `~/.config/systemd/user/nightlight-sun.service`, `~/.config/systemd/user/nightlight-sun.timer` |
 | `claude` | `~/.claude/skills/omarchy-dots/SKILL.md`, `~/.claude/CLAUDE.md` |
 | `omarchy` | `~/.config/omarchy/hooks/theme-set.d/20-tmux-see-through` |
+| `cliamp` | `~/.config/cliamp/config.toml` |
 
 `themes/vague/shell.toml` is not a stow package. Installing the Vague theme deletes and
 reclones `~/.config/omarchy/themes/vague`, so a link there would be lost. `make rice` copies

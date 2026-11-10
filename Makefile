@@ -1,4 +1,4 @@
-PACKAGES := hypr tmux foot readline bash nvim local-scripts claude systemd omarchy
+PACKAGES := hypr tmux foot readline bash nvim local-scripts claude systemd omarchy cliamp
 TARGET ?= $(HOME)
 
 .PHONY: rice
