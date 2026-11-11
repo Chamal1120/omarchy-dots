@@ -34,7 +34,7 @@ a package, files sit at their path relative to `$HOME`.
 
 | Package | Links to |
 |---|---|
-| `hypr` | `~/.config/hypr/bindings.lua`, `~/.config/hypr/looknfeel.lua` |
+| `hypr` | `~/.config/hypr/bindings.lua`, `~/.config/hypr/looknfeel.lua`, `~/.config/hypr/input.lua` |
 | `tmux` | `~/.config/tmux/tmux.conf` |
 | `foot` | `~/.config/foot/foot.ini` |
 | `readline` | `~/.inputrc` |
@@ -43,13 +43,17 @@ a package, files sit at their path relative to `$HOME`.
 | `local-scripts` | `~/.local/scripts/tsesh`, `~/.local/scripts/nightlight-sun` |
 | `systemd` | `~/.config/systemd/user/nightlight-sun.service`, `~/.config/systemd/user/nightlight-sun.timer` |
 | `claude` | `~/.claude/skills/omarchy-dots/SKILL.md`, `~/.claude/CLAUDE.md` |
-| `omarchy` | `~/.config/omarchy/hooks/theme-set.d/20-tmux-see-through` |
+| `omarchy` | `~/.config/omarchy/hooks/theme-set.d/20-tmux-see-through`, `~/.config/omarchy/shell.json` |
 | `cliamp` | `~/.config/cliamp/config.toml` |
 
 `themes/vague/shell.toml` is not a stow package. Installing the Vague theme deletes and
 reclones `~/.config/omarchy/themes/vague`, so a link there would be lost. `make rice` copies
 the file in after the install and runs `omarchy theme set vague`. Edit the repo copy, not
 the one in the theme folder.
+
+Glass (Glassy windows, see-through popups, blur) is currently off. The README's "Glass
+effect" section has the steps to turn it on or off. The `omarchy` tmux hook and the Trouble
+highlight change in `nvim` exist so tmux and Neovim don't paint over a see-through terminal.
 
 Two files in `~/.config/nvim/` must stay out of the repo. `lua/plugins/theme.lua` is
 Omarchy's relative symlink to the active theme, which would break if moved. Stow ignores
@@ -155,6 +159,11 @@ These binds depend on each other:
 - **`omarchy refresh`:** `omarchy refresh hyprland`, `omarchy refresh tmux`, and
   `omarchy refresh config <file>` copy stock files through the symlink and overwrite the
   repo's copy. Warn the user first. To undo it, use `git restore`.
+- **`shell.json`:** the shell's own saves (bar menus, plugin settings) write through the
+  link. `omarchy bar ...` and `omarchy dock ...` write a temp file and `mv` it into place,
+  which replaces the link with a plain file; follow "Relinking a file". `omarchy refresh
+  shell` copies the defaults through the link, emptying `plugins` (drops omacast) and the
+  NetCaptain bar entry; undo it with `git restore`. Warn the user before either.
 - **`omarchy-nvim-refresh`:** this moves all of `~/.config/nvim` to a backup, copies in
   stock files, and deletes Neovim's plugin data, cache, and state. The repo is safe, but
   every Neovim link is lost. `omarchy reinstall` can reach it too. Warn the user first,
@@ -173,7 +182,7 @@ These binds depend on each other:
 
 ```bash
 git -C ~/Projects/omarchy-dots status
-ls -l ~/.config/hypr/bindings.lua ~/.config/tmux/tmux.conf ~/.config/foot/foot.ini ~/.inputrc ~/.bashrc ~/.config/nvim/init.lua
+ls -l ~/.config/hypr/bindings.lua ~/.config/omarchy/shell.json ~/.config/tmux/tmux.conf ~/.config/foot/foot.ini ~/.inputrc ~/.bashrc ~/.config/nvim/init.lua
 ```
 
 - **Repo changes in `git status`:** a migration wrote through the link. Show the user the

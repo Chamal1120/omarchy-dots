@@ -112,3 +112,9 @@ end
 
 o.bind_expressions[toggle_float] = 'hl.dsp.window.float({ action = "toggle" })'
 o.rebind("SUPER + T", "Toggle window floating/tiling", toggle_float)
+
+-- omacast launcher. Alt+Space is Omarchy's dictation toggle, but that is only
+-- bound once a dictation backend is set up; unbind it so omacast always wins.
+-- Dictation push-to-talk stays on Right Alt.
+hl.unbind("ALT + SPACE") -- was: Toggle dictation (if a backend is configured)
+o.bind("ALT + SPACE", "omacast launcher", hl.dsp.global("omacast:toggle"))

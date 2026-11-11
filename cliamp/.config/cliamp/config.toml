@@ -3,3 +3,4 @@ theme = ""
 # Start in the free internet radio directory. Data use depends on the
 # station bitrate; pick 64-128 kbps stations on mobile data.
 provider = "radio"
+show_metadata = false
