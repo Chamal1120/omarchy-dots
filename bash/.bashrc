@@ -1,6 +1,10 @@
 # Omarchy environment (OMARCHY_PATH + PATH), needed even for non-interactive shells
 [[ -r /usr/share/omarchy/default/bash/env-bootstrap ]] && source /usr/share/omarchy/default/bash/env-bootstrap
 
+# Flutter (stable SDK in ~/development/flutter) and the Android SDK from Android Studio
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$HOME/development/flutter/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+
 # If not running interactively, don't do anything else (leave this above the rc source)
 [[ $- != *i* ]] && return
 
