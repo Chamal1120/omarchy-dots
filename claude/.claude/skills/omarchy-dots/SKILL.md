@@ -39,6 +39,7 @@ a package, files sit at their path relative to `$HOME`.
 | `foot` | `~/.config/foot/foot.ini` |
 | `readline` | `~/.inputrc` |
 | `bash` | `~/.bashrc` |
+| `zsh` | `~/.zshenv`, `~/.zshrc`, `~/.config/zsh/omarchy.zsh` |
 | `nvim` | Every file in `~/.config/nvim/` except `lua/plugins/theme.lua` and `.gitignore` |
 | `local-scripts` | `~/.local/scripts/tsesh`, `~/.local/scripts/nightlight-sun` |
 | `systemd` | `~/.config/systemd/user/nightlight-sun.service`, `~/.config/systemd/user/nightlight-sun.timer` |
@@ -131,6 +132,7 @@ An unlinked file can hold changes a migration made, so check before replacing it
 | `tmux` | Load it on a throwaway server first: `tmux -L check -f <file> new-session -d`, then `tmux -L check kill-server`. Then `tmux source-file ~/.config/tmux/tmux.conf`. |
 | `foot` | `foot --check-config`. Applies to new windows only. |
 | `readline` | Applies to new shells only. |
+| `zsh` | `zsh -n <file>`, then a new foot window. Foot runs zsh (`shell=` in `foot.ini`); Bash stays the login shell. `omarchy.zsh` ports Omarchy's Bash defaults by hand, so compare it with `$OMARCHY_PATH/default/bash/` after an update. |
 | `systemd` | `systemctl --user daemon-reload`, then `systemctl --user status <unit>` |
 
 `~/.config/hypr/hyprsunset.conf` is generated daily by `nightlight-sun`. Don't track or

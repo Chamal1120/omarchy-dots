@@ -14,7 +14,7 @@ make rice
 - It keeps no backup. 
 - It is safe to run again once everything is linked theme and loses local edits to the theme. 
 - It may ask for your sudo password to install stow.
-- Open a new terminal once finished installing as foot and Bash read these files at startup.
+- Open a new terminal once finished installing as foot and the shell read these files at startup.
 - The configs are symlinks, so edits in `~/.config` change the files in repo.
 
 ## What's included
@@ -25,9 +25,10 @@ make rice
 | `hypr` | `~/.config/hypr/looknfeel.lua` | Drag window borders with the mouse to resize |
 | `hypr` | `~/.config/hypr/input.lua` | Natural (inverted) touchpad scrolling |
 | `tmux` | `~/.config/tmux/tmux.conf` | `Ctrl+S` leader, vim pane focus, copy mode binds |
-| `foot` | `~/.config/foot/foot.ini` | Sends `Ctrl+Shift+Space` and `Ctrl+Shift+I` to tmux |
+| `foot` | `~/.config/foot/foot.ini` | Starts zsh, sends `Ctrl+Shift+Space` and `Ctrl+Shift+I` to tmux |
 | `readline` | `~/.inputrc` | Vi mode at the Bash prompt with a mode indicator |
 | `bash` | `~/.bashrc` | `vim` alias for `nvim`, `Ctrl+F` opens tsesh |
+| `zsh` | `~/.zshenv`, `~/.zshrc`, `~/.config/zsh/omarchy.zsh` | Omarchy's Bash defaults ported to zsh (Omarchy ships none), vi mode with `[I]`/`[N]` indicator, the Bash overrides above, fast-syntax-highlighting. Needs `zsh` and the AUR `zsh-fast-syntax-highlighting` |
 | `nvim` | `~/.config/nvim/` | Full Neovim config: `Ctrl+F` opens tsesh, Telescope and Oil keys, no indent guides, bottom-line command mode, word highlights, side tree or top file bar, no which-key popups, manual completion, no inline diagnostic text, highlighted current diagnostic in the Trouble list, see-through Trouble window, Markdown shown as plain text (no hidden markup) |
 | `local-scripts` | `~/.local/scripts/tsesh` | Fuzzy-pick a project and open it in a tmux session |
 | `local-scripts` | `~/.local/scripts/nightlight-sun` | Writes `~/.config/hypr/hyprsunset.conf` so night light turns on at sunset and off at sunrise |
@@ -56,7 +57,7 @@ make rice
 | `Leader a` | Last tmux window |
 | `Ctrl+Shift+Space` | Enter tmux copy mode |
 | `Ctrl+Shift+I` | Exit tmux copy mode |
-| `Ctrl+F` | Open tsesh, in Bash and Neovim normal mode |
+| `Ctrl+F` | Open tsesh, in Bash, zsh, and Neovim normal mode |
 | `Ctrl+P` | Neovim: find files by name |
 | `Ctrl+Space` | Neovim: search file contents |
 | `_` | Neovim: open Oil |
