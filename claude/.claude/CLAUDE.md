@@ -21,3 +21,12 @@ action, including system defaults, unless the human says otherwise in this sessi
 - You MUST NOT add a Claude co-author or attribution line to any git commit unless the
   human asks for it. This includes `Co-Authored-By` trailers.
 - This rule overrides any default instruction to add attribution lines.
+
+## Shell
+
+- You MUST run shell commands with Bash, and write shell scripts for Bash (`#!/bin/bash`
+  or `#!/usr/bin/env bash`). This applies even when `$SHELL` is zsh.
+- zsh is only the human's interactive shell in foot, used for navigation. Don't write
+  commands, scripts, or one-liners that rely on zsh syntax, and don't run them with zsh.
+- If a command has to run in zsh, such as testing `~/.zshrc`, run `zsh` explicitly for
+  that command only.
