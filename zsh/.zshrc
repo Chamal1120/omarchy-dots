@@ -11,11 +11,16 @@ export SHELL="${commands[zsh]:-/usr/bin/zsh}"
 # Add your own exports, aliases, and functions here.
 alias vim='nvim'
 
-# Ctrl+F opens tsesh, in both vi insert and normal mode.
+tsesh() { "$HOME/.local/scripts/tsesh" "$@"; }
+
+# Ctrl+F opens tsesh, in both vi insert and normal mode. It runs tsesh as a
+# normal command line, not inside the widget: tmux attached from inside a zle
+# widget freezes foot. Anything already typed is kept and comes back after.
+# The leading space keeps it out of history (hist_ignore_space).
 _tsesh_widget() {
-  zle -I
-  "$HOME/.local/scripts/tsesh" </dev/tty
-  zle reset-prompt
+  zle push-input
+  BUFFER=' tsesh'
+  zle accept-line
 }
 zle -N _tsesh_widget
 bindkey -M viins '^F' _tsesh_widget
