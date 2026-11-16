@@ -46,9 +46,10 @@ a package, files sit at their path relative to `$HOME`.
 | `omarchy` | `~/.config/omarchy/hooks/theme-set.d/20-tmux-see-through`, `~/.config/omarchy/shell.json` |
 | `cliamp` | `~/.config/cliamp/config.toml` |
 
-`themes/vague/shell.toml` is not a stow package. Installing the Vague theme deletes and
-reclones `~/.config/omarchy/themes/vague`, so a link there would be lost. `make rice` copies
-the file in after the install and runs `omarchy theme set vague`. Edit the repo copy, not
+`themes/vague/shell.toml` is not a stow package. `scripts/install-theme.sh` deletes
+`~/.config/omarchy/themes/vague` and copies it fresh from a clone cached in
+`~/.cache/omarchy-dots/themes/vague`, so a link there would be lost. It copies the file in
+after that and runs `omarchy theme set vague`. Edit the repo copy, not
 the one in the theme folder.
 
 Glass (Glassy windows, see-through popups, blur) is currently off. The README's "Glass
@@ -63,8 +64,15 @@ Omarchy's relative symlink to the active theme, which would break if moved. Stow
 (files, folders, and other symlinks), links every package, reloads Hyprland and tmux,
 and installs and applies the Vague theme from GitHub. It keeps no backup, so check for
 changes worth saving before running it. It is safe to rerun when everything is already
-linked, but each run deletes and reclones `~/.config/omarchy/themes/vague`, so it needs
-network access and loses local edits to that theme. It needs sudo only when stow is
+linked, but each run replaces `~/.config/omarchy/themes/vague` from the cached clone, so
+local edits to that theme are lost. Only the first run needs the network; later runs pull
+updates when they can and use the cache when they can't.
+
+`make rice` uses plain `stow`, not `--restow`. Restow deletes and recreates every link,
+and the running shell sees `shell.json` vanish, drops to its defaults (no third-party
+plugins), and can save those defaults over the repo copy. `scripts/reload.sh` also runs
+`omarchy-shell shell reloadConfig`. Plain stow does not remove links to files deleted from
+the repo; remove those by hand. It needs sudo only when stow is
 missing, so if stow is missing, ask the user to run it in their own terminal.
 
 ## Before editing

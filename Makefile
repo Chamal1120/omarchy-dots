@@ -5,8 +5,6 @@ TARGET ?= $(HOME)
 rice:
 	./scripts/install-stow.sh
 	./scripts/remove-conflicts.sh "$(TARGET)" $(PACKAGES)
-	stow --restow --no-folding --target="$(TARGET)" $(PACKAGES)
+	stow --no-folding --target="$(TARGET)" $(PACKAGES)
 	./scripts/reload.sh
-	omarchy-theme-install https://github.com/chrisviegas/omarchy-vague-theme
-	cp themes/vague/shell.toml "$(HOME)/.config/omarchy/themes/vague/shell.toml"
-	omarchy theme set vague
+	./scripts/install-theme.sh https://github.com/chrisviegas/omarchy-vague-theme vague themes/vague/shell.toml
