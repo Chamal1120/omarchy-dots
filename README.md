@@ -28,7 +28,7 @@ make rice
 | `foot` | `~/.config/foot/foot.ini` | Sends `Ctrl+Shift+Space` and `Ctrl+Shift+I` to tmux |
 | `readline` | `~/.inputrc` | Vi mode at the Bash prompt with a mode indicator |
 | `bash` | `~/.bashrc` | `vim` alias for `nvim`, `Ctrl+F` opens tsesh |
-| `nvim` | `~/.config/nvim/` | Full Neovim config: `Ctrl+F` opens tsesh, Telescope and Oil keys, no indent guides, bottom-line command mode, word highlights, side tree or top file bar, no which-key popups, manual completion, no inline diagnostic text, highlighted current diagnostic in the Trouble list, see-through Trouble window |
+| `nvim` | `~/.config/nvim/` | Full Neovim config: `Ctrl+F` opens tsesh, Telescope and Oil keys, no indent guides, bottom-line command mode, word highlights, side tree or top file bar, no which-key popups, manual completion, no inline diagnostic text, highlighted current diagnostic in the Trouble list, see-through Trouble window, Markdown shown as plain text (no hidden markup) |
 | `local-scripts` | `~/.local/scripts/tsesh` | Fuzzy-pick a project and open it in a tmux session |
 | `local-scripts` | `~/.local/scripts/nightlight-sun` | Writes `~/.config/hypr/hyprsunset.conf` so night light turns on at sunset and off at sunrise |
 | `systemd` | `~/.config/systemd/user/nightlight-sun.{service,timer}` | Runs `nightlight-sun` at login and daily at 00:05 |
